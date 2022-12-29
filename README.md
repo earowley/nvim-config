@@ -38,8 +38,6 @@ git clone https://github.com/earowley/nvim-config.git ~/.config/nvim
 * nvim-lspconfig
 * mason-lspconfig.nvim
 * aerial.nvim
-x null-ls.nvim
-x mason-null-ls.nvim
 * telescope.nvim
 * gitsigns.nvim
 * toggleterm.nvim
@@ -47,7 +45,11 @@ x mason-null-ls.nvim
 * nvim-ts-context-commentstring
 * Comment.nvim
 * indent-blankline.nvim
-x which-key.nvim
+
+### (Todo)
+* null-ls.nvim
+* mason-null-ls.nvim
+* which-key.nvim
 
 ## Management
 
