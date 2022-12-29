@@ -15,6 +15,8 @@ git clone https://github.com/earowley/nvim-config.git ~/.config/nvim
 
 3. Run :PackerSync within Neovim
 
+4. (Optional) Uncomment require("impatient") in init.lua
+
 ## Plugins Used
 
 * packer.nvim
