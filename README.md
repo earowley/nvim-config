@@ -1,21 +1,37 @@
 ## Installation
 
-1. Install [packer.nvim](https://github.com/wbthomason/packer.nvim)
+### 1. Install [packer.nvim](https://github.com/wbthomason/packer.nvim)
+
+**Unix**
 
 ```bash
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-2. Clone this repository
+**Windows (PowerShell)**
+
+```bash
+git clone https://github.com/wbthomason/packer.nvim "$env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim"
+```
+
+### 2. Clone this repository
+
+**Unix**
 
 ```bash
 git clone https://github.com/earowley/nvim-config.git ~/.config/nvim
 ```
 
-3. Run :PackerSync within Neovim
+**Windows (PowerShell)**
 
-4. (Optional) Uncomment require("impatient") in init.lua
+```bash
+git clone https://github.com/earowley/nvim-config.git "$env:LOCALAPPDATA\nvim"
+```
+
+### 3. Run :PackerSync within Neovim
+
+### 4. (Optional) Uncomment require("impatient") in init.lua
 
 ## Plugins Used
 
