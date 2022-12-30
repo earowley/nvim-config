@@ -21,9 +21,14 @@ vim.opt.updatetime = 50
 vim.opt.laststatus = 3
 
 -- Keymaps
+local opts = { noremap=true, silent=true }
 vim.keymap.set("n", "<leader>lr", "<cmd>set rnu!<cr>")
 vim.keymap.set("n", "<leader>ln", "<cmd>set nu!<cr>")
-vim.keymap.set("n", "<leader>c", "<cmd>Bdelete<cr>")
+vim.keymap.set("n", "<leader>bd", "<cmd>Bdelete<cr>")
+vim.keymap.set("n", "<leader>bw", "<cmd>Bwipeout<cr>")
+vim.keymap.set('n', '<leader>do', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "\\", "<cmd>split<cr>")
 vim.keymap.set("n", "|", "<cmd>vsplit<cr>")
 vim.keymap.set("n", "n", "nzzzv")
@@ -36,8 +41,8 @@ vim.keymap.set("n", "<C-S-j>", "<cmd>res -1<cr>")
 vim.keymap.set("n", "<C-S-k>", "<cmd>res +1<cr>")
 vim.keymap.set("n", "<C-S-h>", "<cmd>vertical res -1<cr>")
 vim.keymap.set("n", "<C-S-l>", "<cmd>vertical res +1<cr>")
-vim.keymap.set({"n"}, "L", "<cmd>bn<cr>")
-vim.keymap.set({"n"}, "H", "<cmd>bp<cr>")
+vim.keymap.set("n", "L", "<cmd>bn<cr>")
+vim.keymap.set("n", "H", "<cmd>bp<cr>")
 vim.keymap.set({"n", "v"}, "ge", "$")
 vim.keymap.set({"n", "v"}, "gs", "0")
 vim.keymap.set({"n", "v"}, "t", "f")
@@ -62,3 +67,15 @@ vim.keymap.set({"n", "v"}, "K", "<nop>")
 vim.keymap.set({"n", "v"}, "M", "<nop>")
 vim.keymap.set({"v"}, "L", "<nop>")
 vim.keymap.set({"v"}, "H", "<nop>")
+
+-- Change diagnostic signs to use NerdFonts
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- Remove virtual text
+vim.diagnostic.config {
+  virtual_text = false,
+}

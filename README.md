@@ -37,6 +37,7 @@ git clone https://github.com/earowley/nvim-config.git ~/.config/nvim
 * cmp-cmdline
 * cmp-path
 * cmp-nvim-lsp
+* lsp\_signature.nvim
 * nvim-lspconfig
 * mason-lspconfig.nvim
 * aerial.nvim

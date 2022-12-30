@@ -42,6 +42,7 @@ return require("packer").startup(function(use)
     end,
     config = function()
       vim.cmd("colorscheme onedark")
+      vim.cmd("hi NormalFloat guibg=#282c34")
     end,
   }
 
@@ -436,13 +437,34 @@ return require("packer").startup(function(use)
   }
 
   use {
+    "ray-x/lsp_signature.nvim"
+  }
+
+  use {
     "williamboman/mason-lspconfig.nvim",
     config = function()
+      require("lsp_signature").setup {
+        hint_enable = false,
+        handler_opts = {
+          border = "rounded"
+        }
+      }
       require("mason-lspconfig").setup()
       require("mason-lspconfig").setup_handlers {
         -- The Default Handler
         function (server_name)
-          require("lspconfig")[server_name].setup {}
+          local on_attach = function(client, bufnr)
+            -- Mappings.
+            -- See `:help vim.lsp.*` for documentation on any of the below functions
+            local bufopts = { noremap=true, silent=true, buffer=bufnr }
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+          end
+          require("lspconfig")[server_name].setup {
+            on_attach = on_attach
+          }
         end,
 
         -- Optional setups
