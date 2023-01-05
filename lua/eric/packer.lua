@@ -1,3 +1,5 @@
+local scheme = "gruvbox"
+
 return require("packer").startup(function(use)
   use {
     "wbthomason/packer.nvim",
@@ -35,16 +37,27 @@ return require("packer").startup(function(use)
     --                              -- requiring a string which matches one of these patterns, the plugin will be loaded
   }
 
-  use {
-    "joshdick/onedark.vim",
-    setup = function()
-      vim.g.onedark_terminal_italics = 1
-    end,
-    config = function()
-      vim.cmd("colorscheme onedark")
-      vim.cmd("hi NormalFloat guibg=#282c34")
-    end,
-  }
+  if scheme == "onedark" then
+    use {
+      "joshdick/onedark.vim",
+      setup = function()
+        vim.g.onedark_terminal_italics = 1
+      end,
+      config = function()
+        vim.cmd("colorscheme onedark")
+        vim.cmd("hi NormalFloat guibg=#282c34")
+      end,
+    }
+  elseif scheme == "gruvbox" then
+    use {
+      "ellisonleao/gruvbox.nvim",
+      config = function()
+        vim.opt.background = "dark"
+        vim.cmd "colorscheme gruvbox"
+        vim.cmd("hi NormalFloat guibg=#282828")
+      end
+    }
+  end
 
   use {
     "nvim-telescope/telescope.nvim",
