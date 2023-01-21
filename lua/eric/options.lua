@@ -66,6 +66,11 @@ vim.keymap.set({"n", "v"}, "M", "<nop>")
 vim.keymap.set({"v"}, "L", "<nop>")
 vim.keymap.set({"v"}, "H", "<nop>")
 
+-- Open xonsh scripts as Python files
+vim.cmd("autocmd BufNewFile,BufReadPost" ..
+        " *.xonshrc,*.xsh"               ..
+        " setlocal filetype=python")
+
 -- Change diagnostic signs to use NerdFonts
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -73,7 +78,7 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
--- Remove virtual text
+-- Remove virtual text from LSP diagnostics
 vim.diagnostic.config {
   virtual_text = false,
 }
